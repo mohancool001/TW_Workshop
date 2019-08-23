@@ -22,10 +22,10 @@ class Restaurant(object):
     def calcAvgRating(self):
         self.AvgRating = 0 # TODO CALCULATE BASED ON LAST ADDED ALONE
         for r in self.Ratings:
-            self.AvgRating = self.AvgRating + r
+            self.AvgRating = self.AvgRating + int(r)
         
         self.AvgRating = self.AvgRating/len(self.Ratings)
 
     def giveRating(self,rating):
-        self.Ratings.append(rating)
+        self.Ratings.append(int(rating))
         self.calcAvgRating()

@@ -1,0 +1,3 @@
+ROUGH
+
+print(str(rest.id) + " " + rest.name + " " + str(rest.FoodTypes) + " " + str(rest.FoodItems))

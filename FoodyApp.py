@@ -26,6 +26,11 @@ class FoodyApp(object):
         return selectedRests
         pass
     
+    def printRestsList(self, restList):
+        for rest in restList:
+            print(str(rest.id) + " " + rest.name + " " + str(rest.AvgRating))
+    
     """ STAGE 2 """
-    def setRestsRating(self, restId, rating):
+    def setRestsRating(self, rests, rating):
+        rests[0].giveRating(rating)
         pass
