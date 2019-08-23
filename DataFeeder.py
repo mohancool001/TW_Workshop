@@ -61,21 +61,24 @@ class DataFeeder(object):
         #10 Rests
         fullRestaurants = []
 
-        fullRestaurants.append(Restaurant(RestaurantFeed[0], [FoodType.Indian  ]))
-        fullRestaurants.append(Restaurant(RestaurantFeed[1], [FoodType.Chinese ]))
-        fullRestaurants.append(Restaurant(RestaurantFeed[2], [FoodType.Mexican ]))
-        fullRestaurants.append(Restaurant(RestaurantFeed[3], [FoodType.Italian ]))
-        fullRestaurants.append(Restaurant(RestaurantFeed[4], [FoodType.American]))
-        fullRestaurants.append(Restaurant(RestaurantFeed[5], [FoodType.Mexican, FoodType.Italian ]))
-        fullRestaurants.append(Restaurant(RestaurantFeed[6], [FoodType.Chinese, FoodType.Italian ]))
-        fullRestaurants.append(Restaurant(RestaurantFeed[7], [FoodType.Indian,  FoodType.Chinese ]))
-        fullRestaurants.append(Restaurant(RestaurantFeed[8], [FoodType.Chinese, FoodType.American]))
-        fullRestaurants.append(Restaurant(RestaurantFeed[9], [FoodType.Chinese, FoodType.Mexican ]))
+        fullRestaurants.append(Restaurant(RestaurantFeed[0], [FoodType.Indian.name  ]))
+        fullRestaurants.append(Restaurant(RestaurantFeed[1], [FoodType.Chinese.name ]))
+        fullRestaurants.append(Restaurant(RestaurantFeed[2], [FoodType.Mexican.name ]))
+        fullRestaurants.append(Restaurant(RestaurantFeed[3], [FoodType.Italian.name ]))
+        fullRestaurants.append(Restaurant(RestaurantFeed[4], [FoodType.American.name]))
+        fullRestaurants.append(Restaurant(RestaurantFeed[5], [FoodType.Mexican.name, FoodType.Italian.name ]))
+        fullRestaurants.append(Restaurant(RestaurantFeed[6], [FoodType.Chinese.name, FoodType.Italian.name ]))
+        fullRestaurants.append(Restaurant(RestaurantFeed[7], [FoodType.Indian.name,  FoodType.Chinese.name ]))
+        fullRestaurants.append(Restaurant(RestaurantFeed[8], [FoodType.Chinese.name, FoodType.American.name]))
+        fullRestaurants.append(Restaurant(RestaurantFeed[9], [FoodType.Chinese.name, FoodType.Mexican.name ]))
         return fullRestaurants
 
     def addFoodsToRests(self, resObject):
         """ ADD the food based on the type the rest serves """
         for foodType in FoodFeed.keys():
-            if foodType in resObject.FoodTypes:
-                resObject.FoodItems = copy.deepcopy(FoodFeed[foodType])
+            if foodType.name in resObject.FoodTypes:
+                if resObject.FoodItems:
+                    resObject.FoodItems.append(FoodFeed[foodType])
+                else:
+                    resObject.FoodItems = copy.deepcopy(FoodFeed[foodType])
             

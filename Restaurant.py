@@ -10,6 +10,7 @@ class Restaurant(object):
     FoodTypes = []
     Ratings = []
     AvgRating = 0
+    NoOfRating = 0
 
     def __init__(self, name, typesofFood):
         self.id = uuid.uuid4()
@@ -29,3 +30,15 @@ class Restaurant(object):
     def giveRating(self,rating):
         self.Ratings.append(int(rating))
         self.calcAvgRating()
+        self.NoOfRating = len(self.Ratings)
+    
+    def jsonifyMyself(self):
+        jsontype = {
+            "id": self.id,
+            "name": self.name,
+            "FoodItems": self.FoodItems,
+            "FoodTypes": self.FoodTypes,
+            "AvgRating": self.AvgRating,
+            "NoOfRatings": self.NoOfRating
+        }
+        return jsontype

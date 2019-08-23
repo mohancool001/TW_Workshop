@@ -17,13 +17,16 @@ class FoodyApp(object):
             self.dataFeed.addFoodsToRests(eachrests)
         
     """ STAGE 1 """
-    def DoLookup(self, searchTerm):
+    def DoLookupForRests(self, searchTerm):
         selectedRests = []
 
         for rests in self.fullRests:
             if rests.name.startswith(searchTerm):
                 selectedRests.append(rests)
         return selectedRests
+        pass
+
+    def DoLookupForFoods(self, searchTerm):
         pass
     
     def printRestsList(self, restList):

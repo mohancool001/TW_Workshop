@@ -8,3 +8,8 @@ Foody App - Swiggy
 - Users Anonymously can give ratings
 - 1 being worst 5 being best
 - users can see ratings in search results
+
+- User can add items to the cart
+- User can give delivery address for the cart
+- Payment Gateway - Mode of Payment
+- Delivery Charge Applicable if < 200 Rs.
