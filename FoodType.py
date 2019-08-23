@@ -1,6 +1,5 @@
 import enum
-FoodType = ['nul','default', 'Indian', 'Chinese', 'Mexican', 'Italian','American']
-"""
+
 class FoodType(enum.Enum):
     default = 1
     Indian = 2
@@ -8,4 +7,5 @@ class FoodType(enum.Enum):
     Mexican = 4
     Italian = 5
     American = 6
-"""
+
+#FoodType = ['nul','default', 'Indian', 'Chinese', 'Mexican', 'Italian','American']

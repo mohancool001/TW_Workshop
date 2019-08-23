@@ -4,3 +4,7 @@ Foody App - Swiggy
 - Guest user - no logins
 - LIst name and type of dishes
 - search restuarents by name
+
+- Users Anonymously can give ratings
+- 1 being worst 5 being best
+- users can see ratings in search results

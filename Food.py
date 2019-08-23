@@ -3,7 +3,7 @@ class Food(object):
     """ Food class """
     id = 0
     name = ""
-    typeOfFood = FoodType[1]
+    typeOfFood = FoodType.default
     picUrl = ""
 
     def __init__(self, name, typeofFood):

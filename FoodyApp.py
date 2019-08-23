@@ -5,15 +5,27 @@ from DataFeeder import DataFeeder
 
 class FoodyApp(object):
     """ Main Fooody App Functionality Rests Here """
-    name = "FoodyApp"
-    def __init__(self, name):
-        self.name = name
+    dataFeed = ""
+    fullRests = []
+    def __init__(self):
+        self.dataFeed = DataFeeder()
         pass
 
     def FeedData(self):
-        pass
-
+        self.fullRests = self.dataFeed.createRestaurants()
+        for eachrests in self.fullRests:
+            self.dataFeed.addFoodsToRests(eachrests)
+        
+    """ STAGE 1 """
     def DoLookup(self, searchTerm):
-        rObj = Restaurant("A", ["Type"])
-        res = [rObj]
-        return res
+        selectedRests = []
+
+        for rests in self.fullRests:
+            if rests.name.startswith(searchTerm):
+                selectedRests.append(rests)
+        return selectedRests
+        pass
+    
+    """ STAGE 2 """
+    def setRestsRating(self, restId, rating):
+        pass
