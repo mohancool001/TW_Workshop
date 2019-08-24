@@ -28,17 +28,50 @@ def searchLookup():
 
 @app.route("/restaurants/rating", methods=['PUT'])
 def giveRating():
-        RestNameStartsWith = str(request.form['restName'])
-        RatingValue = str(request.form['rating'])
-        RestList = FAHandler.DoLookupForRests(RestNameStartsWith)
+    RestNameStartsWith = str(request.form['restName'])
+    RatingValue = str(request.form['rating'])
+    UserId = str(request.form.get('userId',''))
+    RestList = FAHandler.DoLookupForRests(RestNameStartsWith)
 
-        if RestList:
-            if len(RestList)>1:
-                return {"error" : "Multiple Restaurants"},400
-            FAHandler.setRestsRating(RestList, RatingValue)
-            return {"error" : "Thank you for your ratings"},200
-        else:
-            return {"error" : "No Restaurants in such name"},400
+    if not UserId:
+        UserId = FAHandler.getAnonymousUserId()
+    if RestList:
+        if len(RestList)>1:
+            return {"error" : "Multiple Restaurants"},400
+        FAHandler.setRestsRating(RestList, RatingValue, UserId)
+        return {"error" : "Thank you for your ratings"},200
+    else:
+        return {"error" : "No Restaurants in such name"},400
+
+@app.route("/restaurants/rating", methods=['GET'])
+def getAllRatings():
+    RestNameStartsWith = str(request.form['restName'])
+    RestList = FAHandler.DoLookupForRests(RestNameStartsWith)
+    if RestList:
+        if len(RestList)>1:
+            return {"error" : "Multiple Restaurants"},400
+        ratinginJson = FAHandler.seeAllRatings(RestList)
+        return jsonify(ratinginJson),200
+
+    else:
+        return {"error" : "No Restaurants in such name"},400
+
+@app.route("/user", methods=['GET'])
+def getAllUsers():
+    UserList = FAHandler.GetUsers()
+
+    JsonList = []
+    for user in UserList:
+        JsonList.append(user.jsonifyMyself())
+    if JsonList:
+        return jsonify(JsonList),200
+    return jsonify([]),200
+
+@app.route("/user", methods=['POST'])
+def createUser():
+    userName = str(request.form['name'])
+    FAHandler.AddUser(userName)
+    return "OK. Ive Added a user",200
 
 if __name__ == "__main__":
     FAHandler.FeedData()
