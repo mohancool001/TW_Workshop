@@ -3,6 +3,7 @@ from Restaurant import Restaurant
 from Food import Food
 import copy
 from FoodType import FoodType
+from User import User
 
 FoodFeed = {
     FoodType.Indian :[
@@ -81,4 +82,8 @@ class DataFeeder(object):
                     resObject.FoodItems.append(FoodFeed[foodType])
                 else:
                     resObject.FoodItems = copy.deepcopy(FoodFeed[foodType])
-            
+
+    def createAnonymousUser(self):
+        AnonyUser = User("Anonymous")
+        return AnonyUser
+        

@@ -1,6 +1,7 @@
 import Food
 import copy
 import uuid
+from User import Rating
 class Restaurant(object):
     """ Restaurent class """
 
@@ -22,13 +23,14 @@ class Restaurant(object):
     
     def calcAvgRating(self):
         self.AvgRating = 0 # TODO CALCULATE BASED ON LAST ADDED ALONE
-        for r in self.Ratings:
-            self.AvgRating = self.AvgRating + int(r)
+        for rObj in self.Ratings:
+            self.AvgRating = self.AvgRating + int(rObj.ratingValue)
         
         self.AvgRating = self.AvgRating/len(self.Ratings)
 
-    def giveRating(self,rating):
-        self.Ratings.append(int(rating))
+    def giveRating(self,rating, userid):
+        ratingObj = Rating(rating, userid)
+        self.Ratings.append(ratingObj)
         self.calcAvgRating()
         self.NoOfRating = len(self.Ratings)
     
